@@ -5,5 +5,53 @@ all the prime numbers less than or equal to the number entered by the user.
 */
 
 public class prime {
-    
+    public static void main(String[] args){
+        String inputString;
+        int input;
+
+        if (args.length == 0 || args.length > 1){
+            System.out.println("Incorrect parameters");
+        }
+        else{
+            inputString = args[0];
+            input = Integer.parseInt(inputString);
+
+            PrimeThread p = new PrimeThread(input);
+
+            p.start();
+        }
+    }
+}
+
+class PrimeThread extends Thread {
+    int input;
+
+    public PrimeThread(int input){
+        this.input = input;
+    }
+
+    public void run() {
+        for (int i = 0; i <= this.input; i++){
+            if (isPrime(i) == true){
+                System.out.println(i);
+            }
+        }
+    }
+
+    public boolean isPrime(int n){
+        if (n <2 ){ //1 isn't prime
+            return false;
+        }
+
+        else if (n < 4){//2 and 3 are prime
+            return true;
+        }
+
+        else{
+            for (int i = 2; i * i <= n; i++){
+                if (n % i == 0){ return false;}
+            }
+            return true;
+        }
+    }
 }
