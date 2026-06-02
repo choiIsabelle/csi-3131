@@ -32,13 +32,13 @@ class PrimeThread extends Thread {
 
     public void run() {
         for (int i = 0; i <= this.input; i++){
-            if (isPrime(i) == true){
+            if (isPrime(i)){
                 System.out.println(i);
             }
         }
     }
 
-    public boolean isPrime(int n){
+    public boolean isPrime(int n){ //returns true if n is prime
         if (n <2 ){ //1 isn't prime
             return false;
         }
@@ -48,7 +48,7 @@ class PrimeThread extends Thread {
         }
 
         else{
-            for (int i = 2; i * i <= n; i++){
+            for (int i = 2; i * i <= n; i++){ //checks 2 to sqrt(n) is a factor of n
                 if (n % i == 0){ return false;}
             }
             return true;
