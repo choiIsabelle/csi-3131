@@ -20,6 +20,7 @@ Explanation of the zombie process
 #include <stdlib.h>
 #include <string.h>
 
+
 /* Prototype */
 void createChildAndRead (int);
 
