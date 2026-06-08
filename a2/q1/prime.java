@@ -1,8 +1,13 @@
 /*
+Last Names: Casey, Choi
+Student Numbers: 300291133, 3003282805
 the user will run the program and will enter a
 number on the command line. The program will then create a separate thread that outputs
 all the prime numbers less than or equal to the number entered by the user.
+
+usage: java prime <number>
 */
+
 
 public class prime {
     public static void main(String[] args){
