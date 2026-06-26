@@ -22,13 +22,11 @@
 
 
 
- //the chairs will be a shared four-person array with a pointer to the front and back of the line
- //if there are empty chairs the back of the line will point to an empty chair
- //three of the chairs are the hallway and one is the chair in the office
+ //four chairs, one in the office, one in the hallway, student knows to wake TA if all chairs are empty
 
  //the TA being woken up by a student should be done with a semaphore, according to the assignment description
- //the TA could release the semaphore when asleep, a student wanting help could take the semaphore, wake the TA up,
- //the student would release the semaphore to the TA, TA will take it until it can sleep again
+ //pthread mutex locks are like a key that has to be passed between threads, only the thread that locks the mutex can unlock it
+ //posix semaphores are like notifications, they can be released when none has been taken
 
 #include <stdio.h>
 #include <pthread.h>
@@ -40,11 +38,11 @@
 
 //threads
 
-sem_t TA_alarm_clock; //initiliase to 0
-sem_t TA_available; //initialise to 1
-sem_t assignment_help; //initialise to 0
-sem_t student_left_office; //initialise to 0
-sem_t student_entered_office; //initialise to 
+sem_t TA_alarm_clock; //initiliase to 0, wakes the TA
+sem_t TA_available; //initialise to 1, lets students know if the TA is free
+sem_t assignment_help; //initialise to 0, lets students know when they're done receiving help
+sem_t student_left_office; //initialise to 0, lets the TA know the student has emptied a chair
+sem_t student_entered_office; //initialise to, lets the TA know a student has been chosen to receive help next
 
 pthread_mutex_t chairs; //prevents chairs from being altered while being checked and preserves message order
 
