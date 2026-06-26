@@ -28,6 +28,8 @@
  //pthread mutex locks are like a key that has to be passed between threads, only the thread that locks the mutex can unlock it
  //posix semaphores are like notifications, they can be released when none has been taken
 
+//FULL WARNING I PROBABLY SPELLED SOMETHING WRONG 
+
 #include <stdio.h>
 #include <pthread.h>
 #include <semaphore.h>
