@@ -66,13 +66,15 @@ void *TA_routine(){
                 printf("1 student requiring help from the TA\n");
                 pthread_mutex_unlock(&chairs);
 
+                sem_wait(&student_entered_office);
+
                 int delay = (rand() % 6);
                 sleep(delay); //helping student
 
                 sem_post(&assignment_help); //tells student help is done
                 sem_wait(&student_left_office); //wait until the student has vacated a chair
             }
-            else if (chairs_full =< 4){
+            else if (chairs_full <= 4){
                 printf("%d students requiring help from the TA\n", chairs_full);
                 pthread_mutex_unlock(&chairs);
 
@@ -120,6 +122,7 @@ void *student_routine(void *student_no){
             pthread_mutex_unlock(&chairs);
 
             sem_wait(&TA_available); //wait until the TA is free
+            sem_post(&student_entered_office);
             //because its initialised to 1, the student can run right away
             sem_post(&TA_alarm_clock); //tell the TA to wake up
 
