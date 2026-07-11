@@ -144,7 +144,7 @@ public class q2 {
             if (inmemory== -1){ //if the page isn't already in memory, page fault occurs
                 faultcount++; //increase page fault count
                 victimframe = firstEmptyFrame(mem); //look for first empty frame to be victim
-                if (victimframe == -1){victimframe = selectLRU(mem);} //if memory is full, use FIFO criteria to find the victim
+                if (victimframe == -1){victimframe = selectLRU(mem);} //if memory is full, use LRU criteria to find the victim
                 mem[victimframe].swapPage(refpage, time); //swap
             }
             else { //if the page is in memory, update the page's reference time

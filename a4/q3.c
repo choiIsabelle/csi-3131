@@ -28,8 +28,10 @@ how to run: ./q3 5      (this makes the first 5 Catalan numbers)
 #define SHM_NAME "/catalan_shm"
 
 /* the biggest amount of Catalan numbers we allow.
-   after this the numbers get too big for the number type. */
-#define MAX_COUNT 20
+   we stop at 10 because the formula uses (2n)! and (2*10)! = 20! is the
+   largest factorial that still fits in an unsigned long long. any higher
+   and the factorial would overflow and give wrong numbers. */
+#define MAX_COUNT 10
 
 /* this is the box that lives in shared memory.
    both processes can see it. */
@@ -50,7 +52,6 @@ unsigned long long factorial(int x) {
     }
     return result;
 }
-
 
 /* this function calculates one Catalan number using the formula
    Cn = (2n)! / ((n+1)! * n!) */
